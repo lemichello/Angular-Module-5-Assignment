@@ -1,0 +1,56 @@
+<div class="container">
+    <form name="signUpForm" novalidate>
+        <div class="form-group">
+            <label for="firstNameInput">First name</label>
+            <input id="firstNameInput" class="form-control" type="text" name="firstName" placeholder="First name"
+                   ng-model="ctrl.user.firstName"
+                   required>
+            <span ng-if="signUpForm.firstName.$invalid && signUpForm.firstName.$touched">
+                You need to enter your first name</span>
+        </div>
+
+        <div class="form-group">
+            <label for="lastNameInput">Last name</label>
+            <input id="lastNameInput" type="text" class="form-control" name="lastName" placeholder="Last name"
+                   ng-model="ctrl.user.lastName"
+                   required>
+            <span ng-if="signUpForm.lastName.$invalid && signUpForm.lastName.$touched">
+                You need to enter your last name</span>
+        </div>
+
+        <div class="form-group">
+            <label for="emailInput">Email</label>
+            <input id="emailInput" type="email" class="form-control" name="email" placeholder="Email"
+                   ng-model="ctrl.user.email"
+                   required>
+            <span ng-if="signUpForm.email.$invalid && signUpForm.email.$touched">
+                Must be a valid email address: handle@domail format</span>
+        </div>
+
+        <div class="form-group">
+            <label for="phoneInput">Phone number</label>
+            <input id="phoneInput" type="tel" class="form-control" name="phone" placeholder="Phone ###-###-####"
+                   ng-model="ctrl.user.phone"
+                   required
+                   pattern="(\d{3})-(\d{3})-(\d{4})">
+            <span ng-if="signUpForm.phone.$invalid && signUpForm.phone.$touched">
+                Phone must be in the format ###-###-####</span>
+        </div>
+
+        <div class="form-group">
+            <label for="favDishInput">Short name of your favourite dish</label>
+            <input id="favDishInput" type="text" class="form-control" name="favDish"
+                   placeholder="Favourite dish (short name)" ng-model="ctrl.user.favDish"
+                   required>
+            <span ng-if="signUpForm.favDish.$error.required && signUpForm.favDish.$touched">
+                You need to specify short name of your favourite dish</span>
+            <span ng-if="(!signUpForm.favDish.$error.required && !ctrl.isCorrectDish) && signUpForm.favDish.$touched">
+                No such menu number exists
+            </span>
+        </div>
+
+        <button class="btn btn-primary" ng-disabled="signUpForm.$invalid" ng-click="ctrl.submit()">Sign Up</button>
+
+        <h3 ng-if="ctrl.isSignedUp">Your information has been saved</h3>
+    </form>
+</div>
